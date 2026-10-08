@@ -1,0 +1,14 @@
+apiVersion: lab.gardener.cloud/v1alpha1
+kind: Cluster
+metadata:
+  name: dev
+  namespace: default
+spec:
+  version: "1.33.2"
+  workers:
+  - name: pool-a
+    minimum: 2
+    maximum: 5
+  - name: pool-b
+    minimum: 1
+    maximum: 3

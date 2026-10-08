@@ -1,5 +1,5 @@
 // Package health checks many things in parallel with a concurrency limit,
-// like a gardenlet checking the health of all control plane components.
+// like a platform agent checking the health of all control plane components.
 package health
 
 import (

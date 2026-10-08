@@ -16,13 +16,13 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
-	"github.com/GlediLami/go-gardener-lab/pkg/labscheme"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
+	"github.com/GlediLami/go-platform-lab/pkg/labscheme"
 )
 
 // This is an integration test: envtest starts a REAL kube-apiserver and etcd
 // (no nodes, no kube-controller-manager), installs the CRD, and runs the
-// manager against it. Gardener's test/integration tests work the same way.
+// manager against it. Most controller projects test this way.
 
 var (
 	testEnv   *envtest.Environment

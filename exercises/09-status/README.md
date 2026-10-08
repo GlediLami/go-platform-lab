@@ -1,10 +1,10 @@
 # 09: Tell the user what's wrong
 
-**Ticket:** "When a Cluster spec is invalid, nothing happens and users don't know why. Report it on the Cluster status as a condition, like Shoots do."
+**Ticket:** "When a Cluster spec is invalid, nothing happens and users don't know why. Report it on the Cluster status as a condition, like Deployments and Nodes do."
 
 **Run:** `make test EX=09`
 
-From here on the tests use **Ginkgo/Gomega**, like Gardener. Open `status_test.go` and read it first: `Describe`, `BeforeEach`, `JustBeforeEach`, `It`, `Expect(...).To(...)`.
+From here on the tests use **Ginkgo/Gomega**, the style many Kubernetes projects use. Open `status_test.go` and read it first: `Describe`, `BeforeEach`, `JustBeforeEach`, `It`, `Expect(...).To(...)`.
 
 ## Task
 Implement `Reconcile`:
@@ -27,5 +27,5 @@ Validation is injected (`r.Validate`), so this test doesn't depend on your exerc
 - Dependency injection via a function field.
 - Ginkgo structure.
 
-## In Gardener
-The care controller (`pkg/gardenlet/controller/shoot/care`) sets Shoot conditions like `APIServerAvailable` and `EveryNodeReady`: the ones `wait-for.sh` waited for in your setup.
+## In real projects
+Built-in objects work the same way: a Deployment reports `Available` and `Progressing` conditions, a Node reports `Ready`. Platform APIs (e.g. Cluster API) report cluster health as conditions too.

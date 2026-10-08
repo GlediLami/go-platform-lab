@@ -6,7 +6,7 @@
 
 ## Task
 - `NetworkName`: `cluster--<namespace>--<name>`
-- Normal reconcile: add finalizer `lab.gardener.cloud/network` **first**, then ensure the network exists.
+- Normal reconcile: add finalizer `lab.example.com/network` **first**, then ensure the network exists.
 - Deletion (`deletionTimestamp` set): delete the network (already gone = fine), then remove the finalizer. If the cloud fails, return the error and **keep** the finalizer.
 
 ## Hints
@@ -20,5 +20,5 @@
 - Why "stuck in Terminating" happens (a finalizer nobody removes).
 - Ordering matters for crash safety.
 
-## In Gardener
-Shoot deletion runs a long flow (delete workers, control plane, infrastructure, DNS...) before removing the `gardener` finalizer. Helpers: `pkg/controllerutils/finalizers.go`. In the Gardener lab, scenario 12 showed the same thing from the outside.
+## In real projects
+`kubernetes.io/pvc-protection` keeps a volume claim until no pod uses it. Managed Kubernetes services delete a cluster's VMs, networks and load balancers before the cluster object disappears, using exactly this flow.

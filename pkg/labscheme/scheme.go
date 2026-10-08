@@ -7,10 +7,10 @@ import (
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
 	clientgoscheme "k8s.io/client-go/kubernetes/scheme"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
-// Scheme contains client-go's built-in types plus lab.gardener.cloud/v1alpha1.
+// Scheme contains client-go's built-in types plus lab.example.com/v1alpha1.
 var Scheme = runtime.NewScheme()
 
 func init() {

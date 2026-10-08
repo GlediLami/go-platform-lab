@@ -1,10 +1,10 @@
-# Go Gardener Lab
+# Go Platform Lab
 
-Learn to write the Go code a Gardener / SKE team writes: validation, idempotent cloud calls, retries, concurrency, and **Kubernetes controllers**, step by step.
+Learn to write the Go code a cloud / platform engineering team writes: validation, idempotent cloud calls, retries, concurrency, and **Kubernetes controllers**, step by step. The running example is a tiny managed-Kubernetes service: a `Cluster` resource with worker pools, hibernation and a cloud network.
 
-Same idea as the Gardener lab: every exercise is a small **ticket**. Here you don't edit YAML, you write Go until the tests go green.
+Every exercise is a small **ticket**: you write Go until the tests go green.
 
-- New to the ideas? Read [CONCEPTS.md](CONCEPTS.md) first: Go idioms used at Gardener, how a controller works, how Gardener's code is organized.
+- New to the ideas? Read [CONCEPTS.md](CONCEPTS.md) first: the Go idioms platform code uses, how a controller works, how real projects are organized.
 - Stuck on an error? See [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 - The exercises: [exercises/README.md](exercises/README.md).
 
@@ -22,8 +22,8 @@ Editor: VS Code with the **Go** extension (it installs `gopls`, the language ser
 Get the repo:
 ```bash
 cd ~/dev
-git clone https://github.com/GlediLami/go-gardener-lab.git
-cd go-gardener-lab
+git clone https://github.com/GlediLami/go-platform-lab.git
+cd go-platform-lab
 go mod download
 ```
 
@@ -69,7 +69,7 @@ solutions/01-validation/ the reference implementation with the same tests
 make test EX=03            # your exercise 03 (with the race detector)
 make solution EX=03        # the reference solution's tests
 make test-all              # all your exercises
-make check                 # gofmt + go vet + tests in sync (like `make check` in Gardener)
+make check                 # gofmt + go vet + tests in sync
 
 go test ./exercises/03-infra/ -run TestEnsureNetwork_IsIdempotent -v   # one test, verbose
 go test -race ./exercises/05-health/                                   # race detector
@@ -84,20 +84,20 @@ Ginkgo tests (exercises 09 to 12) also run with plain `go test`. To focus one sp
 
 ## 4. The path
 
-| # | Exercise | Skill | Like in Gardener |
+| # | Exercise | Skill | Where you'll see it |
 |---|----------|-------|------------------|
-| 01 | Validation | structs, error lists, field paths | `pkg/api/core/validation/shoot.go` |
-| 02 | Replicas | table-driven tests | worker pool min/max |
-| 03 | Idempotent infra | interfaces, fakes, error wrapping | provider extension Infrastructure actuator |
-| 04 | Wait | context, timeouts, select | `pkg/utils/retry`, `hack/usage/wait-for.sh` |
-| 05 | Health | goroutines, mutex, semaphore | `pkg/utils/flow`, health checks |
-| 06 | Pods | controller-runtime client, fake client | `pkg/utils/kubernetes/health` |
-| 07 | ConfigMap | CreateOrUpdate, owning only your fields | `pkg/controllerutils/patch.go` |
+| 01 | Validation | structs, error lists, field paths | API server / CRD validation |
+| 02 | Replicas | table-driven tests | node pool min/max, autoscaler bounds |
+| 03 | Idempotent infra | interfaces, fakes, error wrapping | cloud provider integrations |
+| 04 | Wait | context, timeouts, select | `kubectl wait`, `wait.PollUntilContextTimeout` |
+| 05 | Health | goroutines, mutex, semaphore | parallel health checks, `errgroup` |
+| 06 | Pods | controller-runtime client, fake client | readiness checks in operators |
+| 07 | ConfigMap | CreateOrUpdate, owning only your fields | almost every operator |
 | 08 | First reconciler | Reconcile, not-found, patch | every controller |
-| 09 | Status | conditions, status subresource, Ginkgo | Shoot conditions (`care` controller) |
-| 10 | Owned objects | owner references, `Owns()` | Worker -> MachineDeployment |
-| 11 | Finalizer | cleanup before deletion | Shoot deletion / infrastructure cleanup |
-| 12 | Manager | wire it all, integration test (envtest), run on kind | `cmd/gardenlet`, `test/integration` |
+| 09 | Status | conditions, status subresource, Ginkgo | Deployment / Node conditions |
+| 10 | Owned objects | owner references, `Owns()` | Deployment -> ReplicaSet -> Pod |
+| 11 | Finalizer | cleanup before deletion | cleaning up cloud resources on delete |
+| 12 | Manager | wire it all, integration test (envtest), run on kind | operator binaries, integration tests |
 
 01 to 05 are plain Go. 06 to 12 are Kubernetes. Do them in order: each one uses what the previous taught.
 
@@ -121,12 +121,12 @@ kubectl patch cluster dev --type merge -p '{"spec":{"hibernated":true}}'
 kubectl delete cluster dev                  # watch the finalizer log line in tab 1
 kind delete cluster --name lab
 ```
-Don't run this against the Gardener kind cluster (`gardener-local`): use the separate `lab` cluster.
+Use the separate `lab` cluster, not one you use for other work.
 
 ---
 
 ## 6. After this lab
 
-- Read real Gardener code for each pattern (paths in the table above and in each ticket).
+- Read real open-source controllers for each pattern (each ticket's "In real projects" section says where to look).
 - `website-operator` (kubebuilder) shows the same ideas with generated code (CRDs from Go types, `make manifests`).
-- Next level: webhooks (validation/defaulting on admission), `gomock` mocks (`go.uber.org/mock`, used across Gardener), and Gardener's extension library (`extensions/pkg/controller`).
+- Next level: webhooks (validation/defaulting on admission), `gomock` mocks (`go.uber.org/mock`), server-side apply, and reading a big operator codebase end to end.

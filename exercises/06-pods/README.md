@@ -26,5 +26,5 @@ for _, pod := range podList.Items { ... }
 - The fake client (`fake.NewClientBuilder().WithObjects(...).Build()`): Kubernetes without a cluster.
 - Go types for Kubernetes objects.
 
-## In Gardener
-`pkg/utils/kubernetes/health/pod.go` and `deployment.go`: the real health checks behind conditions like `ControlPlaneHealthy`.
+## In real projects
+Readiness logic like this sits behind `kubectl rollout status`, operator health checks and status conditions such as `Available`.

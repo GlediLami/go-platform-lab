@@ -1,9 +1,8 @@
 // Package cloud is a pretend cloud provider API, plus an in-memory fake.
 //
-// Gardener never talks to a cloud directly from its core. Provider extensions
-// (gardener-extension-provider-aws, -openstack, -stackit, ...) wrap the cloud
-// SDK behind small interfaces like API below, so that controllers can be unit
-// tested against a fake instead of a real cloud.
+// Platform controllers rarely call a cloud SDK directly. They wrap it behind a
+// small interface like API below, so the controller can be unit tested against
+// a fake instead of a real cloud.
 package cloud
 
 import (

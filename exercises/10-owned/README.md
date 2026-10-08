@@ -19,7 +19,7 @@
 ## What you learn
 - Owner references: garbage collection + event mapping (`Owns`).
 - Building a full child object in Go (selector, template, containers).
-- Hibernation as "desired replicas 0", like Gardener.
+- Hibernation as "desired replicas 0".
 
-## In Gardener
-The Worker extension turns a Shoot's worker pools into `MachineDeployment`s owned by the Worker resource (`extensions/pkg/controller/worker`). In your Gardener lab you saw them with `ks -n shoot--local--local get machinedeployments`.
+## In real projects
+A Deployment owns ReplicaSets, which own Pods: same mechanism. Cluster API's MachineDeployment owns MachineSets, which own Machines.

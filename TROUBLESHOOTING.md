@@ -56,11 +56,11 @@ Run through make: `make test EX=12`. It installs `setup-envtest` and points the 
 **`unable to start control plane itself: failed to start the controlplane`**
 Usually a leftover process or a blocked port. Rerun; check `ps aux | grep -E "etcd|kube-apiserver"` for leftovers from a killed run.
 
-**`no matches for kind "Cluster" in version "lab.gardener.cloud/v1alpha1"`** (kind)
+**`no matches for kind "Cluster" in version "lab.example.com/v1alpha1"`** (kind)
 The CRD isn't installed in that cluster: `kubectl apply -f config/crd/`. Check `kubectl config current-context` is `kind-lab`.
 
 **`go run ./exercises/12-manager/cmd` talks to the wrong cluster**
-The manager uses your current kubeconfig context (`ctrl.GetConfigOrDie()`). Check with `kubectl config current-context`. Don't point it at the Gardener `gardener-local` cluster.
+The manager uses your current kubeconfig context (`ctrl.GetConfigOrDie()`). Check with `kubectl config current-context`. Don't point it at a cluster you care about: use the separate `lab` kind cluster.
 
 **Deployment isn't deleted after the Cluster is deleted (envtest only)**
 Expected: envtest has no kube-controller-manager, so no garbage collector. On kind it is deleted.

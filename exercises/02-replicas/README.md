@@ -17,5 +17,5 @@
 - Table-driven tests: the standard Go test style. Each case is one line; `t.Run` names the failing case.
 - Writing your own test cases: think about edges (0, equal to min, equal to max).
 
-## In Gardener
-Worker pools have `minimum`/`maximum` (cluster-autoscaler bounds), and hibernation scales workers to zero. See `Worker` in `pkg/apis/core/v1beta1/types_shoot.go`.
+## In real projects
+Node pools in managed Kubernetes (and the cluster-autoscaler) have min/max bounds, and dev clusters often "hibernate" by scaling workers to zero at night.

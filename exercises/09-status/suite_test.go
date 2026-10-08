@@ -7,7 +7,7 @@ import (
 	. "github.com/onsi/gomega"
 )
 
-// Gardener's tests use Ginkgo (Describe/It) and Gomega (Expect(...).To(...)).
+// Many Kubernetes projects test with Ginkgo (Describe/It) and Gomega (Expect(...).To(...)).
 // One TestXxx function hands control to Ginkgo, which runs every spec in the package.
 func TestClusterStatus(t *testing.T) {
 	RegisterFailHandler(Fail)

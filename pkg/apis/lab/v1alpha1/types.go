@@ -1,7 +1,7 @@
-// Package v1alpha1 contains a tiny, Shoot-like API used by the lab exercises.
+// Package v1alpha1 contains a tiny managed-cluster API used by the lab exercises.
 //
-// In Gardener, API types live in pkg/apis/core/v1beta1 and their DeepCopy
-// functions are generated with controller-gen / deepcopy-gen. Here they are
+// In real projects the DeepCopy functions of API types are generated with
+// controller-gen / deepcopy-gen. Here they are
 // written by hand (see zz_deepcopy.go) so you can read what the generator does.
 package v1alpha1
 
@@ -12,7 +12,7 @@ import (
 )
 
 // GroupName is the API group of the lab types.
-const GroupName = "lab.gardener.cloud"
+const GroupName = "lab.example.com"
 
 var (
 	// SchemeGroupVersion is the group and version used to register these objects.
@@ -35,7 +35,7 @@ const (
 	ConditionSpecValid = "SpecValid"
 )
 
-// Cluster is a simplified Shoot: a Kubernetes version, worker pools and hibernation.
+// Cluster is a simplified managed Kubernetes cluster: a version, worker pools and hibernation.
 type Cluster struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`

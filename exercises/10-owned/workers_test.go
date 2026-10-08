@@ -12,8 +12,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
-	"github.com/GlediLami/go-gardener-lab/pkg/labscheme"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/labscheme"
 )
 
 var _ = Describe("Reconciler", func() {
@@ -29,7 +29,7 @@ var _ = Describe("Reconciler", func() {
 	BeforeEach(func() {
 		ctx = context.Background()
 		cluster = &v1alpha1.Cluster{
-			ObjectMeta: metav1.ObjectMeta{Namespace: "garden-dev", Name: "dev", UID: "cluster-uid-1234"},
+			ObjectMeta: metav1.ObjectMeta{Namespace: "team-dev", Name: "dev", UID: "cluster-uid-1234"},
 			Spec: v1alpha1.ClusterSpec{
 				Version: "1.33.2",
 				Workers: []v1alpha1.WorkerPool{
@@ -39,7 +39,7 @@ var _ = Describe("Reconciler", func() {
 			},
 		}
 		request = reconcile.Request{NamespacedName: client.ObjectKeyFromObject(cluster)}
-		depKey = client.ObjectKey{Namespace: "garden-dev", Name: "dev-workers"}
+		depKey = client.ObjectKey{Namespace: "team-dev", Name: "dev-workers"}
 	})
 
 	JustBeforeEach(func() {
@@ -82,7 +82,7 @@ var _ = Describe("Reconciler", func() {
 		Expect(dep.OwnerReferences).To(HaveLen(1))
 		owner := dep.OwnerReferences[0]
 		Expect(owner.Kind).To(Equal("Cluster"))
-		Expect(owner.APIVersion).To(Equal("lab.gardener.cloud/v1alpha1"))
+		Expect(owner.APIVersion).To(Equal("lab.example.com/v1alpha1"))
 		Expect(owner.Name).To(Equal("dev"))
 		Expect(owner.UID).To(BeEquivalentTo("cluster-uid-1234"))
 		Expect(ptr.Deref(owner.Controller, false)).To(BeTrue())

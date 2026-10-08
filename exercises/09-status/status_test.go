@@ -12,8 +12,8 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
-	"github.com/GlediLami/go-gardener-lab/pkg/labscheme"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/labscheme"
 )
 
 var _ = Describe("Reconciler", func() {
@@ -30,7 +30,7 @@ var _ = Describe("Reconciler", func() {
 		ctx = context.Background()
 		validateErrs = nil
 		cluster = &v1alpha1.Cluster{
-			ObjectMeta: metav1.ObjectMeta{Namespace: "garden-dev", Name: "dev", Generation: 2},
+			ObjectMeta: metav1.ObjectMeta{Namespace: "team-dev", Name: "dev", Generation: 2},
 			Spec: v1alpha1.ClusterSpec{
 				Version: "1.33.2",
 				Workers: []v1alpha1.WorkerPool{{Name: "pool-a", Minimum: 1, Maximum: 3}},

@@ -12,9 +12,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
-	"github.com/GlediLami/go-gardener-lab/pkg/labscheme"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
+	"github.com/GlediLami/go-platform-lab/pkg/labscheme"
 )
 
 var _ = Describe("Reconciler", func() {
@@ -25,13 +25,13 @@ var _ = Describe("Reconciler", func() {
 		r         *Reconciler
 		cluster   *v1alpha1.Cluster
 		request   reconcile.Request
-		netName   = "cluster--garden-dev--dev"
+		netName   = "cluster--team-dev--dev"
 	)
 
 	BeforeEach(func() {
 		ctx = context.Background()
 		cluster = &v1alpha1.Cluster{
-			ObjectMeta: metav1.ObjectMeta{Namespace: "garden-dev", Name: "dev"},
+			ObjectMeta: metav1.ObjectMeta{Namespace: "team-dev", Name: "dev"},
 			Spec:       v1alpha1.ClusterSpec{Version: "1.33.2"},
 		}
 		request = reconcile.Request{NamespacedName: client.ObjectKeyFromObject(cluster)}

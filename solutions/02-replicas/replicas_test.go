@@ -3,7 +3,7 @@ package replicas
 import (
 	"testing"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
 func TestDesiredReplicas(t *testing.T) {

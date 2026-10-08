@@ -16,12 +16,12 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
 const (
 	// LabelCluster points from owned objects back to their Cluster.
-	LabelCluster = "lab.gardener.cloud/cluster"
+	LabelCluster = "lab.example.com/cluster"
 	// MachineImage is a tiny image that just sleeps: each pod is a pretend machine.
 	MachineImage = "registry.k8s.io/pause:3.10"
 )

@@ -1,4 +1,4 @@
-module github.com/GlediLami/go-gardener-lab
+module github.com/GlediLami/go-platform-lab
 
 go 1.26.0
 

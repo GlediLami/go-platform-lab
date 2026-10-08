@@ -13,7 +13,7 @@ import (
 // LabelManagedBy marks objects this lab manages.
 const (
 	LabelManagedBy = "app.kubernetes.io/managed-by"
-	ManagedByValue = "go-gardener-lab"
+	ManagedByValue = "go-platform-lab"
 )
 
 // EnsureConfigMap makes the ConfigMap exist with exactly this data and the

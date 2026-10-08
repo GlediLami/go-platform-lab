@@ -1,5 +1,5 @@
 // Package manager wires all lab controllers into one controller-runtime
-// Manager, like cmd/gardenlet wires all gardenlet controllers.
+// Manager, the way a real operator binary wires all its controllers.
 package manager
 
 import (
@@ -7,7 +7,7 @@ import (
 
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
 )
 
 // Setup registers every lab controller with mgr. cloudAPI is the cloud the
@@ -21,7 +21,7 @@ import (
 //   - workers.Reconciler       (exercises/10-owned)       Client, Scheme: mgr.GetScheme()
 //   - cleanup.Reconciler       (exercises/11-finalizer)   Client, Cloud: cloudAPI
 //
-// Import them like: workers "github.com/GlediLami/go-gardener-lab/exercises/10-owned"
+// Import them like: workers "github.com/GlediLami/go-platform-lab/exercises/10-owned"
 // The client is mgr.GetClient(): it reads from the manager's cache.
 func Setup(mgr ctrl.Manager, cloudAPI cloud.API) error {
 	return errors.New("not implemented")

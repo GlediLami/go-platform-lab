@@ -1,6 +1,6 @@
-# 04: wait-for.sh, in Go
+# 04: `kubectl wait`, in Go
 
-**Ticket:** "We need a helper that waits until something is ready (a Seed, a Shoot condition), checks right away, polls at an interval, stops on real errors and gives up when the context times out."
+**Ticket:** "We need a helper that waits until something is ready (a cluster, a condition), checks right away, polls at an interval, stops on real errors and gives up when the context times out."
 
 **Run:** `make test EX=04`
 
@@ -29,7 +29,7 @@ for {
 ## What you learn
 - `context.Context` for cancellation and deadlines.
 - `select` over channels, tickers.
-- This is `hack/usage/wait-for.sh` (from your Gardener setup) as a Go function.
+- It's what a `wait-for` script or `kubectl wait --for=condition=...` does, as a Go function.
 
-## In Gardener
-`pkg/utils/retry` and `k8s.io/apimachinery/pkg/util/wait` (`wait.PollUntilContextTimeout`). In tests, Gomega's `Eventually` does the same job.
+## In real projects
+`kubectl wait`, `wait.PollUntilContextTimeout` in `k8s.io/apimachinery/pkg/util/wait`, and Gomega's `Eventually` in tests all do this job.

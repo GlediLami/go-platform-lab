@@ -7,7 +7,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/util/validation/field"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
 // validCluster returns a Cluster that passes validation. Tests change one thing at a time.

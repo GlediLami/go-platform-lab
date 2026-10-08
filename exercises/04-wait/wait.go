@@ -1,5 +1,5 @@
-// Package wait polls a condition until it is true, like hack/usage/wait-for.sh
-// in Gardener or wait.PollUntilContextTimeout in k8s.io/apimachinery.
+// Package wait polls a condition until it is true, like `kubectl wait` or
+// wait.PollUntilContextTimeout in k8s.io/apimachinery.
 package wait
 
 import (

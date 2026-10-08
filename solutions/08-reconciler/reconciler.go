@@ -16,7 +16,7 @@ import (
 )
 
 // AnnotationMinReplicas holds the minimum replica count, e.g. "3".
-const AnnotationMinReplicas = "lab.gardener.cloud/min-replicas"
+const AnnotationMinReplicas = "lab.example.com/min-replicas"
 
 // Reconciler enforces AnnotationMinReplicas on Deployments.
 type Reconciler struct {

@@ -1,6 +1,6 @@
 // Package cleanup creates a cloud network for every Cluster and uses a
-// finalizer to delete it before the Cluster disappears, like Gardener deletes
-// a Shoot's infrastructure before the Shoot object is gone.
+// finalizer to delete it before the Cluster disappears, like a managed
+// Kubernetes service deletes a cluster's infrastructure before the object is gone.
 package cleanup
 
 import (
@@ -14,19 +14,18 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
 )
 
 const (
 	// Finalizer blocks deletion until the network is gone.
-	Finalizer = "lab.gardener.cloud/network"
+	Finalizer = "lab.example.com/network"
 	// NetworkCIDR is the CIDR every Cluster network gets.
 	NetworkCIDR = "10.0.0.0/16"
 )
 
-// NetworkName is the cloud network name of a Cluster, like the
-// shoot--<project>--<name> technical ID in Gardener.
+// NetworkName is the cloud network name of a Cluster: unique per namespace and name.
 func NetworkName(cluster *v1alpha1.Cluster) string {
 	return "cluster--" + cluster.Namespace + "--" + cluster.Name
 }

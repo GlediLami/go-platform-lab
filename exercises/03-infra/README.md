@@ -20,5 +20,5 @@ You get `cloud.API` (an interface) and `cloud.Fake` (an in-memory implementation
 - Interfaces + fakes for testing without a cloud.
 - Error wrapping and sentinel errors.
 
-## In Gardener
-Provider extensions implement `Actuator` interfaces (`extensions/pkg/controller/infrastructure/actuator.go`): `Reconcile` and `Delete`, both idempotent, both wrapping a cloud SDK.
+## In real projects
+Cloud provider integrations (cloud-controller-manager, Cluster API infrastructure providers, cloud-specific operators) wrap the cloud SDK behind interfaces, and their `Reconcile`/`Delete` paths are idempotent exactly like this.

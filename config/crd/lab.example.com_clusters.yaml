@@ -1,11 +1,11 @@
 # Hand-written CRD for the lab Cluster type. In real projects this file is
-# generated from the Go types with controller-gen (make generate in Gardener).
+# generated from the Go types with controller-gen.
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
-  name: clusters.lab.gardener.cloud
+  name: clusters.lab.example.com
 spec:
-  group: lab.gardener.cloud
+  group: lab.example.com
   names:
     kind: Cluster
     listKind: ClusterList

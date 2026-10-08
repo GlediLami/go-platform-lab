@@ -24,5 +24,5 @@ Implement `ValidateCluster` and `ValidateClusterSpec` in `validation.go`. Report
 - Returning a list of errors instead of the first one.
 - This is exactly how the API server tells you `spec.workers[0].maximum: Invalid value: 1: must be greater than or equal to minimum`.
 
-## In Gardener
-`pkg/api/core/validation/shoot.go`: thousands of lines of the same pattern. Open it and search for `field.Invalid`.
+## In real projects
+The Kubernetes API server validates every built-in resource the same way: `pkg/apis/core/validation/validation.go` in the kubernetes repo is thousands of lines of `field.Invalid` and friends. Operators do the same for their CRDs (in Go code or validating webhooks).

@@ -29,5 +29,5 @@ See section 5 of the main README: `kind create cluster --name lab`, apply the CR
 - Integration tests with envtest: real API semantics (status subresource, finalizers, resourceVersion conflicts) without a full cluster. Note what's missing: no kube-controller-manager, so no garbage collection and no pods.
 - Two controllers writing the same object cause **conflicts**: look for `the object has been modified` in the logs. controller-runtime retries them, and your idempotent code makes that safe.
 
-## In Gardener
-`cmd/gardenlet` builds a manager and adds all gardenlet controllers. `test/integration/` has envtest suites for most controllers, set up just like `suite_test.go` here.
+## In real projects
+A kubebuilder project's `cmd/main.go` builds a manager and adds every controller, and its scaffolded `suite_test.go` sets up envtest the same way.

@@ -1,12 +1,12 @@
 // Package replicas decides how many worker machines each pool should run.
 package replicas
 
-import "github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+import "github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 
 // DesiredReplicas returns how many machines a pool should have.
 //
 // A hibernated cluster has zero machines. Otherwise the current number is kept
-// inside [Minimum, Maximum], like the cluster-autoscaler bounds of a Shoot pool.
+// inside [Minimum, Maximum], like the cluster-autoscaler bounds of a node pool.
 func DesiredReplicas(pool v1alpha1.WorkerPool, current int32, hibernated bool) int32 {
 	if hibernated {
 		return 0

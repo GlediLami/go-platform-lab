@@ -1,6 +1,6 @@
 # 08: Your first reconciler
 
-**Ticket:** "Teams want to guarantee a minimum number of replicas on some Deployments, even if someone scales them down by hand. Add an annotation `lab.gardener.cloud/min-replicas: \"3\"` and enforce it."
+**Ticket:** "Teams want to guarantee a minimum number of replicas on some Deployments, even if someone scales them down by hand. Add an annotation `lab.example.com/min-replicas: \"3\"` and enforce it."
 
 **Run:** `make test EX=08`
 
@@ -31,5 +31,5 @@ Implement `Reconcile`:
 - **System errors vs user errors**: return errors only when a retry can help. A typo in an annotation won't fix itself; retrying it forever just spams logs.
 - Level-based thinking: you don't know *what* changed, you just converge.
 
-## In Gardener
-Every controller under `pkg/gardenlet/controller/` starts like this. `pkg/controllerutils/reconciler/` has shared helpers.
+## In real projects
+Every controller starts like this: the ones in kube-controller-manager, the ones kubebuilder scaffolds for you, and the ones your team writes.

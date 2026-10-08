@@ -14,7 +14,7 @@ import (
 	"k8s.io/utils/ptr"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
 var _ = Describe("All controllers together", func() {
@@ -28,7 +28,7 @@ var _ = Describe("All controllers together", func() {
 
 	BeforeEach(func() {
 		ctx = context.Background()
-		ns = &corev1.Namespace{ObjectMeta: metav1.ObjectMeta{GenerateName: "garden-"}}
+		ns = &corev1.Namespace{ObjectMeta: metav1.ObjectMeta{GenerateName: "team-"}}
 		Expect(k8sClient.Create(ctx, ns)).To(Succeed())
 
 		cluster = &v1alpha1.Cluster{
@@ -67,7 +67,7 @@ var _ = Describe("All controllers together", func() {
 		Eventually(func(g Gomega) {
 			got := &v1alpha1.Cluster{}
 			g.Expect(k8sClient.Get(ctx, client.ObjectKeyFromObject(cluster), got)).To(Succeed())
-			g.Expect(got.Finalizers).To(ContainElement("lab.gardener.cloud/network"))
+			g.Expect(got.Finalizers).To(ContainElement("lab.example.com/network"))
 		}).WithTimeout(timeout).WithPolling(interval).Should(Succeed())
 
 		By("putting the Deployment back when someone scales it by hand (Owns)")

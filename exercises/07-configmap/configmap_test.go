@@ -12,7 +12,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 )
 
-const ns, name = "garden", "shoot-info"
+const ns, name = "platform", "cluster-info"
 
 func get(t *testing.T, c client.Client) *corev1.ConfigMap {
 	t.Helper()
@@ -55,7 +55,7 @@ func TestEnsureConfigMap_CreateThenNoop(t *testing.T) {
 
 func TestEnsureConfigMap_UpdatesDataKeepsForeignLabels(t *testing.T) {
 	existing := &corev1.ConfigMap{
-		ObjectMeta: metav1.ObjectMeta{Namespace: ns, Name: name, Labels: map[string]string{"team": "ske"}},
+		ObjectMeta: metav1.ObjectMeta{Namespace: ns, Name: name, Labels: map[string]string{"team": "platform"}},
 		Data:       map[string]string{"version": "1.32.0", "old-key": "x"},
 	}
 	c := fake.NewClientBuilder().WithObjects(existing).Build()
@@ -73,8 +73,8 @@ func TestEnsureConfigMap_UpdatesDataKeepsForeignLabels(t *testing.T) {
 	if !maps.Equal(cm.Data, data) {
 		t.Errorf("data = %v, want exactly %v", cm.Data, data)
 	}
-	if cm.Labels["team"] != "ske" {
-		t.Errorf("label team=ske was removed; keep labels you don't own. labels: %v", cm.Labels)
+	if cm.Labels["team"] != "platform" {
+		t.Errorf("label team=platform was removed; keep labels you don't own. labels: %v", cm.Labels)
 	}
 	if cm.Labels[LabelManagedBy] != ManagedByValue {
 		t.Errorf("missing label %s=%s", LabelManagedBy, ManagedByValue)

@@ -1,4 +1,4 @@
-# Go Gardener Lab
+# Go Platform Lab
 #
 #   make test EX=01        run the tests of exercise 01 (your code)
 #   make test EX=12        exercise 12 needs envtest: downloads kube-apiserver + etcd once

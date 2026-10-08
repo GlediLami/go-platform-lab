@@ -9,9 +9,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 	metricsserver "sigs.k8s.io/controller-runtime/pkg/metrics/server"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
-	"github.com/GlediLami/go-gardener-lab/pkg/labscheme"
-	manager "github.com/GlediLami/go-gardener-lab/solutions/12-manager"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
+	"github.com/GlediLami/go-platform-lab/pkg/labscheme"
+	manager "github.com/GlediLami/go-platform-lab/solutions/12-manager"
 )
 
 func main() {

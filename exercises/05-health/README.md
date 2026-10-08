@@ -18,5 +18,5 @@
 - Goroutines, WaitGroup, Mutex, buffered channels.
 - `go test -race` finds data races. If you remove the mutex, run it and read the report.
 
-## In Gardener
-`pkg/utils/flow` runs reconcile steps as a dependency graph with parallel tasks. The gardenlet's care controller checks many components of every Shoot concurrently.
+## In real projects
+`golang.org/x/sync/errgroup` (with `SetLimit`) is the library version of this pattern. Operators use it to check or update many components in parallel without overloading the API server.

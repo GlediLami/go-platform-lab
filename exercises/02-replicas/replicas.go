@@ -1,7 +1,7 @@
 // Package replicas decides how many worker machines each pool should run.
 package replicas
 
-import "github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+import "github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 
 // DesiredReplicas returns how many machines a pool should have.
 //

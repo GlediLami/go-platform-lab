@@ -1,12 +1,12 @@
 // Package infra creates and deletes cloud networks idempotently, like the
-// Infrastructure actuator of a Gardener provider extension.
+// cloud-provider controller managing infrastructure for a cluster.
 package infra
 
 import (
 	"context"
 	"errors"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
 )
 
 // ErrCIDRMismatch means the network exists but with a different CIDR.

@@ -1,5 +1,5 @@
 // Package manager wires all lab controllers into one controller-runtime
-// Manager, like cmd/gardenlet wires all gardenlet controllers.
+// Manager, the way a real operator binary wires all its controllers.
 package manager
 
 import (
@@ -7,12 +7,12 @@ import (
 
 	ctrl "sigs.k8s.io/controller-runtime"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/cloud"
-	validation "github.com/GlediLami/go-gardener-lab/solutions/01-validation"
-	minreplicas "github.com/GlediLami/go-gardener-lab/solutions/08-reconciler"
-	clusterstatus "github.com/GlediLami/go-gardener-lab/solutions/09-status"
-	workers "github.com/GlediLami/go-gardener-lab/solutions/10-owned"
-	cleanup "github.com/GlediLami/go-gardener-lab/solutions/11-finalizer"
+	"github.com/GlediLami/go-platform-lab/pkg/cloud"
+	validation "github.com/GlediLami/go-platform-lab/solutions/01-validation"
+	minreplicas "github.com/GlediLami/go-platform-lab/solutions/08-reconciler"
+	clusterstatus "github.com/GlediLami/go-platform-lab/solutions/09-status"
+	workers "github.com/GlediLami/go-platform-lab/solutions/10-owned"
+	cleanup "github.com/GlediLami/go-platform-lab/solutions/11-finalizer"
 )
 
 // Setup registers every lab controller with mgr. cloudAPI is the cloud the

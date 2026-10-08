@@ -23,7 +23,7 @@ func pod(namespace, name string, phase corev1.PodPhase, ready ...bool) *corev1.P
 }
 
 func TestUnhealthyPods(t *testing.T) {
-	ns := "shoot--local--local"
+	ns := "control-plane"
 	objects := []client.Object{
 		pod(ns, "kube-apiserver", corev1.PodRunning, true, true),
 		pod(ns, "etcd-main-0", corev1.PodRunning, true, false), // one container not ready

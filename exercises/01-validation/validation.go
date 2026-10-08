@@ -1,10 +1,10 @@
-// Package validation validates Cluster objects the way Gardener validates Shoots.
+// Package validation validates Cluster objects the way an API server validates resources.
 package validation
 
 import (
 	"k8s.io/apimachinery/pkg/util/validation/field"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
 // MaxPoolNameLength is the longest allowed worker pool name.

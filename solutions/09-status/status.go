@@ -1,5 +1,5 @@
 // Package clusterstatus reports validation results on the Cluster's status as
-// a condition, the way Gardener reports health on Shoot status.
+// a condition, the way Kubernetes objects report their state.
 package clusterstatus
 
 import (
@@ -13,7 +13,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/reconcile"
 
-	"github.com/GlediLami/go-gardener-lab/pkg/apis/lab/v1alpha1"
+	"github.com/GlediLami/go-platform-lab/pkg/apis/lab/v1alpha1"
 )
 
 // Condition reasons.

@@ -7,7 +7,7 @@
 ## Task
 `EnsureConfigMap(ctx, c, namespace, name, data)`:
 - the ConfigMap exists with exactly `data`
-- it has the label `app.kubernetes.io/managed-by=go-gardener-lab`
+- it has the label `app.kubernetes.io/managed-by=go-platform-lab`
 - labels set by others survive
 - return `Created`, `Updated` or `None` (nothing changed)
 
@@ -27,5 +27,5 @@ result, err := controllerutil.CreateOrUpdate(ctx, c, cm, func() error {
 - "Own only your fields": several controllers and humans touch the same object.
 - `None` means no API write happened: cheap, idempotent reconciles.
 
-## In Gardener
-`pkg/controllerutils/patch.go` (`GetAndCreateOrMergePatch` and friends): Gardener's variants that use patches instead of updates to avoid conflicts.
+## In real projects
+`controllerutil.CreateOrUpdate` / `CreateOrPatch` are used in almost every operator. Server-side apply is the other modern way to own only your fields.
